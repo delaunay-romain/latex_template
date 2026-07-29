@@ -1,0 +1,184 @@
+\input{headfile.tex} %All needed information are in this document
+
+%Global information about the document
+\def\THETITLE{Template LaTeX Document}
+\def\THEAUTHOR{Romain Delaunay}
+
+\title{\THETITLE}
+\author{\THEAUTHOR}
+\date{}
+
+
+% Header
+\lhead{\THETITLE}
+\rhead{\rightmark}
+
+% Foot
+\lfoot{\THEAUTHOR}
+\cfoot{\thepage \ / \pageref*{LastPage} }
+\rfoot{}
+
+%------------- Document --------------%
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\chapter{Exemple Sérieux : Théorie des groupes}
+
+\section{Généralités}
+
+Dans cette section, nous introduisons les éléments principaux pour comprendre la notion de groupe et
+de morphismes de groupes.
+
+\begin{definition}{(Groupe)}
+  On appelle groupe tout quadruplet $(G,\cdot, e, \cdot^{-1})$ tel que G est un ensemble et 
+  $\cdot$ une loi interne associative de neutre $e$, c'est-à-dire : 
+
+  \begin{enumerate}
+  \item $\forall x,y,z \in G, (x \cdot y) \cdot z = x \cdot ( y \cdot z)$.
+  \item $\forall x \in G, e \cdot x = x \cdot e = x$.
+  \end{enumerate}
+
+  De plus, $\cdot^{-1} : G \to G$ vérifie :\[
+    \forall x \in G, x \cdot x^{-1} = x^{-1} \cdot x = e
+  \]
+\end{definition}
+
+\begin{remark}
+  Dans la suite, si le contexte le permet, on notera simplement $G$ un groupe, et on notera le produit
+  avec le symbole invisible, à savoir $x \cdot y$ deviendra $xy$.
+  Dans presque tous les cas, les symboles $e$ et $\cdot^{-1}$ seront omis, c'est pourquoi on rencontrera
+  souvent la notation $(G,\cdot)$ pour un groupe, ou encore $(G,+)$ pour un groupe lorsque celui-ci est
+  commutatif.
+\end{remark}
+
+\begin{example}{}
+  \blank
+  \begin{enumerate}
+    \item Pour $n \in \mathbb{N}$, $\GL_n (\mathbb{R})$ est un groupe.
+    \item Pour $n \in \mathbb{N}^*, (\mathbb{Z}/n \mathbb{Z},+)$ est un groupe.
+  \end{enumerate}
+\end{example}
+
+\begin{proposition}{}
+  \label{prop:unicité inverse}
+  Soit $G$ un groupe. Tout élément de $G$ admet un unique inverse pour la loi de composition interne.
+\end{proposition}
+
+\begin{proof}
+    Soit $x \in G$, et soient $y, z \in G$ tels que $xy = yx =e$ et $xz = zx = e$.
+    Montrons que $y=z$.
+
+    On a : \begin{align*}
+      yxz &= (yx)z = ez = z \\
+          &= y(xz) = ye = y
+    \end{align*}
+
+    En mettant bout à bout les égalités, on obtient bien que $y=z$.
+\end{proof}
+
+\begin{definition}{}
+  Soient $G,G'$ deux groupes et $f : G \to G'$ une application.
+  On dit que $f$ est un morphisme de groupes si :
+  \[
+    \forall x,y \in G, f(xy) = f(x) f(y).
+  \]
+\end{definition}
+
+\begin{remark}
+  Si $f:G \to G'$ est un morphisme de groupe, alors $f(e_G) = e_{G'}$.
+  Pour celles et ceux qui auraient l'habitude du formalisme des monoïdes,
+  il n'est plus nécessaire de vérifier ce qu'il se passe pour l'élément neutre
+  puisque la loi de groupe induit naturellement que le neutre est envoyé... sur le neutre !
+\end{remark}
+
+
+
+\begin{exo}{}
+    \Question Montrer que pour tout $k \in \mathbb{Z}$, l'application $m_k : \begin{cases}
+      \mathbb{Z}/n \mathbb{Z} &\to \mathbb{Z}/ n \mathbb{Z} \\
+      \overline{i} & \mapsto \overline{ki}
+    \end{cases}$ est un morphisme de groupes.
+\end{exo}
+\begin{ans}{}
+    \Question REPONSE
+\end{ans}
+
+\chapter{Copie}
+
+Le but de ce chapitre est de mettre en évidence les possibilités du templates en cours.
+
+\section{Généralités}
+
+\begin{proposition}{}
+  \label{prop:unicité inverse2}
+  Ceci est une proposition
+\end{proposition}
+
+\begin{proof}
+    Dans la suite, on aura besoin du 
+    \begin{lemma}{}
+      \lipsum[1]
+    \end{lemma}
+\end{proof}
+
+\begin{corollary}{}
+    Ceci est un corollaire
+\end{corollary}
+
+\section{Autre section}
+
+\begin{lemma}{}
+  Ceci est un lemme
+    
+\end{lemma}
+
+\begin{example}{}
+    \label{ex:prod}
+    Ceci est un exemple un peu nul ... dommage ! 
+\end{example}
+
+\begin{theorem}{}
+  Voici un théorème qui est sur plusieurs pages grâce à tcbox breakable !
+  \lipsum[1-10]
+\end{theorem}
+
+\begin{exo}{}
+  \Question THEIHTIEHTIE
+\end{exo}
+\begin{ans}{}
+    \Question Réponse
+\end{ans}
+
+\begin{exo}{EXO 2}
+    \Question CECI EST UNE question
+\end{exo}
+\begin{ans}{}
+    \Question REPONSE
+\end{ans}
+
+\chapter{Références}
+
+\section{Références - Section}
+
+\subsection{Références - Subsection}
+
+Il est possible d'utiliser le package cleveref pour écrire par exemple \cref{prop:unicité inverse}, ou 
+\cref{prop:unicité inverse2}, et être reconnu par tout le monde (neovim, texlab, le compilateur latex, ...)
+De plus, la \cref{prop:unicité inverse} donne \cref{ex:prod}.
+Essayons, pour voir, si \cref{ex:prod,prop:unicité inverse} fonctionne.
+
+\chapter{TODO LIST}
+
+\begin{enumerate}
+  \item Faire en sorte que l'on puisse afficher/masquer les corrections des exercices
+  \item Faire en sorte que l'on puisse afficher les corrections à d'autres endroits que juste après les énoncés respectifs.
+  \item Retirer la marge dans les environnements exercices
+  \item Créer des snippets pour ajouter des thms, ..., avec label
+\end{enumerate}
+
+
+\end{document}

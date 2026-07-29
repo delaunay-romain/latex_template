@@ -1,0 +1,30 @@
+\input{headfile.tex} %All needed information are in this document
+
+%Global information about the document
+\def\THETITLE{Template LaTeX Document}
+\def\THEAUTHOR{Romain Delaunay}
+
+\title{\THETITLE}
+\author{\THEAUTHOR}
+\date{}
+
+
+% Header
+\lhead{\THETITLE}
+\rhead{\rightmark}
+
+% Foot
+\lfoot{\THEAUTHOR}
+\cfoot{\thepage \ / \pageref*{LastPage} }
+\rfoot{}
+
+%------------- Document --------------%
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+
+\end{document}

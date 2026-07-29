@@ -24,6 +24,6 @@ The template is still quite simple and there still needs some fixes to be done.
 
 ## Common usage
 
-I personnaly use this template using nvim with the texlab lsp and the vimtex plugin for compiling.
-A lot of commands are actually derived from nvim snippets.
+I personnaly use this template using nvim with the texlab lsp and the vimtex plugin with latexmk for compiling.
+A lot of commands are actually derived from nvim snippets so the newcommands section is quite short.
 

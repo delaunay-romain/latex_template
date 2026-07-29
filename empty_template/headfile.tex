@@ -17,6 +17,9 @@
   pdftitle={Template},%title of document (usually for pdf readers to display)
 }
 
+\usepackage{enumitem}
+\setlist[enumerate,1]{label={(\roman*)}}
+
 % Verbatism package : used for code display 
 \usepackage{fancyvrb}
 \usepackage{minted} %Interpret code and display colors aswell.
@@ -68,6 +71,7 @@
 
 %Figure package
 \usepackage{tikz}
+\usepackage{tikz-cd}
 
 %Boxes packages, for theorems, definitions, ...
 %REQUIRES tikz in order to work !
@@ -333,6 +337,14 @@
 %%%%% USAGE ADVICE : ALWAYS USE SOLUTION ENVIRONMENT RIGHT AFTER AN EXERCISE ENVIRONMENT OTHERWISE,
 %%%%% IT WILL BREAK THE NUMBERING SYSTEM.
 
+\newenvironment{leftrule}[1]{
+  \begin{tcolorbox}[frame hidden, boxrule=0pt, borderline west={2pt}{0pt}{black}, 
+    opacityback=0]{(#1)}
+}
+{
+\end{tcolorbox}
+}
+
 % Line spacing package
 \usepackage{setspace}
 \onehalfspacing
@@ -347,7 +359,6 @@
 
 % ----------- New commands ------------ %
 
-
 \newcommand*{\blank}{\hspace*{1pt}}
 \newcommand*{\MnR}[0]{\mathscr{M}_{n}(\mathbb{R})}
 \newcommand*{\GLnR}[0]{\mathbf{GL}_{n}(\mathbb{R})}
@@ -358,7 +369,7 @@
 \newcommand{\Stab}[0]{\textup{Stab}}
 \newcommand{\Fix}[0]{\textup{Fix}}
 \newcommand*{\rg}[0]{\textup{rg}}
-\newcommand*{\Im}[0]{\textup{Im}}
+\renewcommand*{\Im}[0]{\textup{Im}}
 \newcommand*{\Ker}[0]{\textup{Ker}}
 \newcommand*{\Coker}[0]{\textup{Coker}}
 \newcommand*{\Tr}[0]{\textup{Tr}}

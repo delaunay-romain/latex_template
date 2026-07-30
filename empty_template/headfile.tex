@@ -18,8 +18,8 @@
 }
 
 \usepackage{enumitem}
-\setlist[enumerate,1]{label={(\roman*)}}
-
+\setlist[enumerate,1]{label={\textup{(\roman*)}}}
+\allowdisplaybreaks
 % Verbatism package : used for code display 
 \usepackage{fancyvrb}
 \usepackage{minted} %Interpret code and display colors aswell.
@@ -116,19 +116,21 @@
   {}% name of font to use in the body of the theorem
   {0pt}% measure of space to indent
   {\bfseries}% name of head font
-  {\textcolor{red!70!white}:}% punctuation between head and body
+  {\textcolor{brown}:}% punctuation between head and body
   { }% space after theorem head; " " = normal interword space
   {
-    \textcolor{red!70!white}
+    \textcolor{brown}
     {\thmname{#1}}
   }
 
 \theoremstyle{proofstyle}
 \newtheorem{proofenv}{Preuve}
 \renewenvironment{proof}{
-  \vspace*{-0.74cm}
+  \vspace{-0.59cm}
   \begin{tcolorbox}[frame hidden, boxrule=0pt ,
-    borderline west={2pt}{0pt}{purple!60!white}, colback=red!10!white]{}
+    borderline west={2pt}{0pt}{brown}, colback=brown!10!white,
+%     borderline north={2pt}{0pt}{red, opacity=0.05}
+    ]{}
   \begin{proofenv}
   }{
   \qed
@@ -261,10 +263,10 @@
 
 \theoremstyle{examplestyle}
 \newtheorem{exampleenv}[exampleenv]{Exemple}
-\newenvironment{example}[1]{
+\newenvironment{example}{
   \begin{tcolorbox}[frame hidden, boxrule=0pt ,
     borderline west={2pt}{0pt}{blue}, colback=blue!10!white]{}
-    \begin{exampleenv}{#1}
+    \begin{exampleenv}{}
   }{
   \end{exampleenv}
 \end{tcolorbox}
@@ -348,10 +350,13 @@
 % Line spacing package
 \usepackage{setspace}
 \onehalfspacing
-
+\usepackage{flushend}
+\raggedbottom
 % package used for multicolumns 
 \usepackage{multicol}
 
+% package for arrows in multiple equations for explanations (and more...)
+\usepackage{witharrows}
 
 \sloppy
 \usepackage[final, nopatch=footnote]{microtype} % the option is to avoid the 
@@ -376,3 +381,5 @@
 \newcommand*{\norm}[1]{\left\lVert #1 \right\rVert}
 \newcommand*{\indicatrice}[0]{\mathds{1}}
 \newcommand*{\Vect}[1]{\textup{Vect}\left\{#1\right\}}
+\newcommand*{\id}{\textup{id}}
+\newcommand{\curvearrow}[1]{\Arrow[tikz={font={\tiny\mdseries}, text width=2cm}]{#1}}

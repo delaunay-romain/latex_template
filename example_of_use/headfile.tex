@@ -17,6 +17,9 @@
   pdftitle={Template},%title of document (usually for pdf readers to display)
 }
 
+\usepackage{enumitem}
+\setlist[enumerate,1]{label={\textup{(\roman*)}}}
+\allowdisplaybreaks
 % Verbatism package : used for code display 
 \usepackage{fancyvrb}
 \usepackage{minted} %Interpret code and display colors aswell.
@@ -68,6 +71,7 @@
 
 %Figure package
 \usepackage{tikz}
+\usepackage{tikz-cd}
 
 %Boxes packages, for theorems, definitions, ...
 %REQUIRES tikz in order to work !
@@ -112,19 +116,21 @@
   {}% name of font to use in the body of the theorem
   {0pt}% measure of space to indent
   {\bfseries}% name of head font
-  {\textcolor{red!70!white}:}% punctuation between head and body
+  {\textcolor{brown}:}% punctuation between head and body
   { }% space after theorem head; " " = normal interword space
   {
-    \textcolor{red!70!white}
+    \textcolor{brown}
     {\thmname{#1}}
   }
 
 \theoremstyle{proofstyle}
 \newtheorem{proofenv}{Preuve}
 \renewenvironment{proof}{
-  \vspace*{-0.74cm}
+  \vspace{-0.59cm}
   \begin{tcolorbox}[frame hidden, boxrule=0pt ,
-    borderline west={2pt}{0pt}{purple!60!white}, colback=red!10!white]{}
+    borderline west={2pt}{0pt}{brown}, colback=brown!10!white,
+%     borderline north={2pt}{0pt}{red, opacity=0.05}
+    ]{}
   \begin{proofenv}
   }{
   \qed
@@ -257,10 +263,10 @@
 
 \theoremstyle{examplestyle}
 \newtheorem{exampleenv}[exampleenv]{Exemple}
-\newenvironment{example}[1]{
+\newenvironment{example}{
   \begin{tcolorbox}[frame hidden, boxrule=0pt ,
     borderline west={2pt}{0pt}{blue}, colback=blue!10!white]{}
-    \begin{exampleenv}{#1}
+    \begin{exampleenv}{}
   }{
   \end{exampleenv}
 \end{tcolorbox}
@@ -333,13 +339,24 @@
 %%%%% USAGE ADVICE : ALWAYS USE SOLUTION ENVIRONMENT RIGHT AFTER AN EXERCISE ENVIRONMENT OTHERWISE,
 %%%%% IT WILL BREAK THE NUMBERING SYSTEM.
 
+\newenvironment{leftrule}[1]{
+  \begin{tcolorbox}[frame hidden, boxrule=0pt, borderline west={2pt}{0pt}{black}, 
+    opacityback=0]{(#1)}
+}
+{
+\end{tcolorbox}
+}
+
 % Line spacing package
 \usepackage{setspace}
 \onehalfspacing
-
+\usepackage{flushend}
+\raggedbottom
 % package used for multicolumns 
 \usepackage{multicol}
 
+% package for arrows in multiple equations for explanations (and more...)
+\usepackage{witharrows}
 
 \sloppy
 \usepackage[final, nopatch=footnote]{microtype} % the option is to avoid the 
@@ -347,75 +364,22 @@
 
 % ----------- New commands ------------ %
 
-
-\newcommand{\ds}{\displaystyle}
 \newcommand*{\blank}{\hspace*{1pt}}
 \newcommand*{\MnR}[0]{\mathscr{M}_{n}(\mathbb{R})}
 \newcommand*{\GLnR}[0]{\mathbf{GL}_{n}(\mathbb{R})}
 \newcommand*{\transpose}[1]{{}^t #1}
-\newcommand*{\M}[0]{\mathscr{M}}
 \newcommand*{\GL}[0]{\textup{GL}}
-\renewcommand*{\O}[0]{\mathscr{O}}
-\newcommand*{\A}[0]{\mathscr{A}}
-\newcommand*{\bbA}[0]{\mathbb{A}}
-\newcommand*{\bbB}[0]{\mathbb{B}}
-\newcommand*{\bbC}[0]{\mathbb{C}}
-\newcommand*{\bbF}[0]{\mathbb{F}}
-\newcommand*{\bbG}[0]{\mathbb{G}}
-\newcommand*{\bbH}[0]{\mathbb{H}}
-\newcommand*{\bbM}[0]{\mathbb{M}}
-\newcommand*{\bbQ}[0]{\mathbb{Q}}
-\newcommand*{\bbR}[0]{\mathbb{R}}
-\newcommand*{\calP}[0]{\mathcal{P}}
-\newcommand*{\calI}[0]{\mathcal{I}}
-\newcommand*{\calL}[0]{\mathcal{L}}
-
-\newcommand*{\bbK}[0]{\mathbb{K}}
-\newcommand*{\bbL}[0]{\mathbb{L}}
-\renewcommand*{\L}[0]{\mathscr{L}}
-\newcommand*{\bbN}[0]{\mathbb{N}}
-\newcommand*{\bbZ}[0]{\mathbb{Z}}
-\newcommand*{\calU}[0]{\mathcal{U}}
-\newcommand*{\bbU}[0]{\mathbb{U}}
-\renewcommand*{\H}[0]{\mathcal{H}}
-\newcommand*{\F}[0]{\mathscr{F}}
 \newcommand{\Alt}{\mathfrak{A}}
 \newcommand*{\Sym}[0]{\mathfrak{S}}
-\newcommand*{\Schwartz}[0]{\mathcal{S}}
-\newcommand*{\C}{\mathscr{C}}
-\newcommand*{\B}[0]{\mathcal{B}}
-\newcommand*{\lint}[1]{\llbracket #1 \rrbracket}
-\newcommand*{\centre}[0]{\mathrm{Z}}
-\newcommand{\W}[0]{\textup{W}}
 \newcommand{\Stab}[0]{\textup{Stab}}
 \newcommand{\Fix}[0]{\textup{Fix}}
 \newcommand*{\rg}[0]{\textup{rg}}
-\newcommand*{\I}[0]{\textup{Im}}
+\renewcommand*{\Im}[0]{\textup{Im}}
 \newcommand*{\Ker}[0]{\textup{Ker}}
+\newcommand*{\Coker}[0]{\textup{Coker}}
 \newcommand*{\Tr}[0]{\textup{Tr}}
-\newcommand*{\Sp}[0]{\textup{Sp}}
-\newcommand*{\TV}[0]{\textup{TV}}
-\newcommand*{\sinc}[0]{\textup{sinc}}
-\newcommand*{\abs}[1]{\left| #1 \right|}
-\newcommand*{\interval}[1]{\left[ #1 \right]}
 \newcommand*{\norm}[1]{\left\lVert #1 \right\rVert}
-\newcommand*{\bracket}[1]{\left( #1 \right)}
-\newcommand*{\dd}{\mathop{}\!\mathrm{d}}
-\newcommand*{\ens}[1]{\left\{ #1 \right\}}
-\newcommand*{\partent}[1]{\left\lfloor #1 \right\rfloor}
-\newcommand*{\scalar}[2]{\left\langle #1 \mathrel{}\middle|\mathrel{} #2 \right\rangle}
-\newcommand*{\limite}[1]{\underset{#1}{\lim}}
-\newcommand*{\ie}[0]{\textit{i.e. }}
-\newcommand*{\eg}[0]{\textit{e.g. }}
-\newcommand*{\sgn}[0]{\textup{sgn}}
 \newcommand*{\indicatrice}[0]{\mathds{1}}
 \newcommand*{\Vect}[1]{\textup{Vect}\left\{#1\right\}}
-\newcommand*{\vpx}[0]{\textup{vp}\bracket{\frac{1}{x}}}
-\newcommand*{\Normale}[1]{\mathscr{N}\bracket{#1}}
-\newcommand*{\Esp}[1]{\mathbb{E}\interval{#1}}
-\newcommand*{\Var}[1]{\mathbb{V}\interval{#1}}
-\renewcommand*{\P}{\mathbb{P}}
-\newcommand*{\ps}[0]{\underset{n \rightarrow+\infty}{\stackrel{\textup{p.s.}}{\longrightarrow}}}
-\newcommand*{\prob}[0]{\underset{n \rightarrow+\infty}{\stackrel{\mathbb{P}}{\longrightarrow}}}
-\newcommand*{\Lp}[1]{\underset{n \rightarrow+\infty}{\stackrel{L^{#1}}{\longrightarrow}}}
-\newcommand*{\loi}[0]{\underset{n \rightarrow+\infty}{\stackrel{\mathscr{L}}{\longrightarrow}}}
+\newcommand*{\id}{\textup{id}}
+\newcommand{\curvearrow}[1]{\Arrow[tikz={font={\tiny\mdseries}, text width=2cm}]{#1}}

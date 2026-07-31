@@ -1,9 +1,9 @@
-\documentclass{scrbook}
+\documentclass[11pt]{scrbook}
 \usepackage[utf8]{inputenc}
 
 %General packages for basic document setup
 \usepackage{amsmath,amsfonts, amsthm, graphicx}
-\usepackage[margin=1.5cm,bottom=3cm, top=3cm]{geometry}
+\usepackage[hmargin=1.5cm,vmargin=3cm,]{geometry}
 
 % Random text generator package
 \usepackage{lipsum}
@@ -16,6 +16,8 @@
   urlcolor=blue,      %external link color
   pdftitle={Template},%title of document (usually for pdf readers to display)
 }
+
+\usepackage{stmaryrd}
 
 \usepackage{enumitem}
 \setlist[enumerate,1]{label={\textup{(\roman*)}}}
@@ -125,6 +127,8 @@
 
 \theoremstyle{proofstyle}
 \newtheorem{proofenv}{Preuve}
+
+% simple proof environment
 \renewenvironment{proof}{
   \vspace{-0.59cm}
   \begin{tcolorbox}[frame hidden, boxrule=0pt ,
@@ -133,9 +137,47 @@
     ]{}
   \begin{proofenv}
   }{
-  \qed
   \end{proofenv}
   \end{tcolorbox}
+}
+
+% if needed to make indentations in a proof, it is better to then use the following
+% environments.
+\newenvironment{proofe}{
+  \vspace{-0.59cm}
+  \begin{tcolorbox}[frame hidden, boxrule=0pt,borderline west={2pt}{0pt}{brown},
+      , colback=brown!10!white
+    ]{}
+}{
+\end{tcolorbox}
+}
+
+% one left rule
+\newenvironment{proofr}{
+  \vspace{-0.59cm}
+  \begin{tcolorbox}[frame hidden, boxrule=0pt,borderline west={2pt}{0pt}{brown},
+    borderline west={2pt}{5mm}{black}, colback=brown!10!white, left=10mm
+    ]{}
+}{
+\end{tcolorbox}
+}
+% two left rule
+\newenvironment{proofrr}{
+  \vspace{-0.59cm}
+  \begin{tcolorbox}[frame hidden, boxrule=0pt,borderline west={2pt}{0pt}{brown},
+    borderline west={2pt}{10mm}{black}, borderline west={2pt}{5mm}{black}, colback=brown!10!white, left=15mm
+    ]{}
+}{
+\end{tcolorbox}
+}
+
+% be careful as nested tcolorbox cannot break, so use this with precation if it is in a nested env.
+\newenvironment{leftrule}[1]{
+  \begin{tcolorbox}[frame hidden, boxrule=0pt, borderline west={2pt}{0pt}{black}, 
+    opacityback=0]{(#1)}
+}
+{
+\end{tcolorbox}
 }
 
 %Propositions
@@ -339,14 +381,6 @@
 %%%%% USAGE ADVICE : ALWAYS USE SOLUTION ENVIRONMENT RIGHT AFTER AN EXERCISE ENVIRONMENT OTHERWISE,
 %%%%% IT WILL BREAK THE NUMBERING SYSTEM.
 
-\newenvironment{leftrule}[1]{
-  \begin{tcolorbox}[frame hidden, boxrule=0pt, borderline west={2pt}{0pt}{black}, 
-    opacityback=0]{(#1)}
-}
-{
-\end{tcolorbox}
-}
-
 % Line spacing package
 \usepackage{setspace}
 \onehalfspacing
@@ -358,10 +392,16 @@
 % package for arrows in multiple equations for explanations (and more...)
 \usepackage{witharrows}
 
+\usepackage[bottom]{footmisc}
+\usepackage{footnote}
+
 \sloppy
 \usepackage[final, nopatch=footnote]{microtype} % the option is to avoid the 
 % Warning : Unable to apply patch 'footnote' 
 
+
+\usepackage{amssymb}
+\usepackage{faktor}
 % ----------- New commands ------------ %
 
 \newcommand*{\blank}{\hspace*{1pt}}

@@ -141,6 +141,16 @@
   \end{tcolorbox}
 }
 
+\newenvironment{soloproof}{
+  \begin{tcolorbox}[frame hidden, boxrule=0pt ,
+    borderline west={2pt}{0pt}{brown}, colback=brown!10!white,
+%     borderline north={2pt}{0pt}{red, opacity=0.05}
+    ]{}
+  \begin{proofenv}
+  }{
+  \end{proofenv}
+  \end{tcolorbox}
+}
 % if needed to make indentations in a proof, it is better to then use the following
 % environments.
 \newenvironment{proofe}{
@@ -165,7 +175,7 @@
 \newenvironment{proofrr}{
   \vspace{-0.59cm}
   \begin{tcolorbox}[frame hidden, boxrule=0pt,borderline west={2pt}{0pt}{brown},
-    borderline west={2pt}{10mm}{black}, borderline west={2pt}{5mm}{black}, colback=brown!10!white, left=15mm
+    borderline west={1pt}{10mm}{black!80!white}, borderline west={2pt}{5mm}{black}, colback=brown!10!white, left=15mm
     ]{}
 }{
 \end{tcolorbox}

@@ -1,5 +1,8 @@
 \documentclass[11pt]{scrbook}
-\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[french]{babel}
+% \usepackage{babelbib}
 
 %General packages for basic document setup
 \usepackage{amsmath,amsfonts, amsthm, graphicx}
@@ -8,15 +11,16 @@
 % Random text generator package
 \usepackage{lipsum}
 
+\usepackage{cite}
+\usepackage{xurl}
 % Hyperlink package
 \usepackage{hyperref}
 \hypersetup{
   colorlinks=true,    %active colors for links
   linkcolor=blue,     %internal link color
   urlcolor=blue,      %external link color
-  pdftitle={Template},%title of document (usually for pdf readers to display)
+  citecolor=blue,
 }
-
 \usepackage{stmaryrd}
 
 \usepackage{enumitem}
@@ -477,4 +481,6 @@ list text={Exercice avec solution à la page \pageref{sol:#2}},#1}
 \newcommand*{\indicatrice}[0]{\mathds{1}}
 \newcommand*{\Vect}[1]{\textup{Vect}\left\{#1\right\}}
 \newcommand*{\id}{\textup{id}}
+\newcommand*{\Tor}{\textup{Tor}}
+\newcommand*{\ev}{\textup{ev}}
 \newcommand{\curvearrow}[1]{\Arrow[tikz={font={\tiny\mdseries}, text width=2cm}]{#1}}

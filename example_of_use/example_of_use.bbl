@@ -1,0 +1,58 @@
+\begin{thebibliography}{10}
+
+\bibitem{adamek_abstract_2004}
+Jiří Adámek, Horst Herrlich, and George~E. Strecker.
+\newblock {\em Abstract and concrete categories: the joy of cats}.
+\newblock Dover books on mathematics. Dover Publ, Mineola, NY, 2004.
+
+\bibitem{assem_introduction_2022}
+Ibrahim Assem.
+\newblock {\em Introduction au langage catégorique}.
+\newblock Number 130 in Mathématiques en devenir. Calvage \& Mounet, Paris, 2022.
+
+\bibitem{berhuy_algebre_2025}
+Grégory Berhuy.
+\newblock {\em Algèbre : le grand combat}.
+\newblock Calvage \& Mounet, 3 edition, 2025.
+
+\bibitem{felix_topologie_2022}
+Yves Félix and Daniel Tanré.
+\newblock {\em Topologie algébrique}.
+\newblock Sciences sup. Dunod, Malakoff, 2022.
+
+\bibitem{harari_anneaux_2023}
+David Harari.
+\newblock Anneaux commutatifs.
+\newblock \url{https://www.imo.universite-paris-saclay.fr/~david.harari/enseignement/m1alg24/ring24.pdf}, 2023.
+
+\bibitem{harari_corps_2023}
+David Harari.
+\newblock Corps, {Théorie} de {Galois}.
+\newblock \url{https://www.imo.universite-paris-saclay.fr/~david.harari/enseignement/m1alg24/galois24.pdf}, 2023.
+
+\bibitem{harari_groupes_2023}
+David Harari.
+\newblock Groupes.
+\newblock \url{https://www.imo.universite-paris-saclay.fr/~david.harari/enseignement/m1alg24/group24.pdf}, 2023.
+
+\bibitem{harari_modules_2023}
+David Harari.
+\newblock Modules sur un anneau commutatif.
+\newblock \url{https://www.imo.universite-paris-saclay.fr/~david.harari/enseignement/m1alg24/modules24.pdf}, 2023.
+
+\bibitem{hatcher_algebraic_2001}
+Allen Hatcher.
+\newblock {\em Algebraic topology}.
+\newblock Cambridge university press, New York, 2001.
+
+\bibitem{massot_structures_2023}
+Patrick Massot.
+\newblock Structures algébriques fondamentales.
+\newblock \url{https://www.imo.universite-paris-saclay.fr/~patrick.massot/enseignement/poly_alg.pdf}, 2023.
+
+\bibitem{perrin_cours_1996}
+Daniel Perrin.
+\newblock {\em Cours d'algèbre}.
+\newblock {CAPES}-{AGREG} mathématiques. Ellipses, Paris, 1996.
+
+\end{thebibliography}

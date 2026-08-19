@@ -1,7 +1,7 @@
-\input{headfile.tex} %All needed information are in this document
+\input{../empty_template/headfile.tex} %All needed information are in this document
 
 %Global information about the document
-\def\THETITLE{Template LaTeX Document}
+\def\THETITLE{Notes de cours 0}
 \def\THEAUTHOR{Romain Delaunay}
 
 \title{\THETITLE}
@@ -18,159 +18,316 @@
 \cfoot{\thepage \ / \pageref*{LastPage} }
 \rfoot{}
 
+\hypersetup{
+  pdftitle={NotesDeCours0}
+}
 %------------- Document --------------%
 
 \begin{document}
+
+\addto\extrasfrench{\protected\edef:{\unexpanded\expandafter{:}}}
+\selectlanguage{french}
 
 \maketitle
 
 \tableofcontents
 
-\chapter{Exemple Sérieux : Théorie des groupes}
+\chapter{Test de chapitre}
 
-\section{Généralités}
+Ceci est un exemple en français.
 
-Dans cette section, nous introduisons les éléments principaux pour comprendre la notion de groupe et
-de morphismes de groupes.
+\section{Quotient}
 
-\begin{definition}{(Groupe)}
-  On appelle groupe tout quadruplet $(G,\cdot, e, \cdot^{-1})$ tel que G est un ensemble et 
-  $\cdot$ une loi interne associative de neutre $e$, c'est-à-dire : 
-
-  \begin{enumerate}
-  \item $\forall x,y,z \in G, (x \cdot y) \cdot z = x \cdot ( y \cdot z)$.
-  \item $\forall x \in G, e \cdot x = x \cdot e = x$.
-  \end{enumerate}
-
-  De plus, $\cdot^{-1} : G \to G$ vérifie :\[
-    \forall x \in G, x \cdot x^{-1} = x^{-1} \cdot x = e
-  \]
+\begin{definition}{(Quotient)}
+    On appelle quotient de l'ensemble $X$ toute paire $(Y,\pi )$ avec $Y$ un ensemble quelconque, et $\pi :X \to Y$ 
+    une application surjective. On dit que ce quotient est associé à la relation $\sim$ si : 
+    $\forall x,x' \in X, x \sim x' \Leftrightarrow \pi (x) = \pi (x')$. 
 \end{definition}
 
-\begin{remark}
-  Dans la suite, si le contexte le permet, on notera simplement $G$ un groupe, et on notera le produit
-  avec le symbole invisible, à savoir $x \cdot y$ deviendra $xy$.
-  Dans presque tous les cas, les symboles $e$ et $\cdot^{-1}$ seront omis, c'est pourquoi on rencontrera
-  souvent la notation $(G,\cdot)$ pour un groupe, ou encore $(G,+)$ pour un groupe lorsque celui-ci est
-  commutatif.
-\end{remark}
+Dans la suite, si le contexte le permet, on pourra noter simplement $Y$ le quotient.
 
-\begin{example}{}
+\begin{example}
   \blank
   \begin{enumerate}
-    \item Pour $n \in \mathbb{N}$, $\GL_n (\mathbb{R})$ est un groupe.
-    \item Pour $n \in \mathbb{N}^*, (\mathbb{Z}/n \mathbb{Z},+)$ est un groupe.
+    \item Pour tout ensemble $X$ et toute relation d'équivalence $\sim$ sur $X$, on note $\faktor{X}{\sim} := \{ 
+      \textup{cl}(x) ~|~ x \in X \}$ où $\textup{cl}(x) := \{ y \in X ~|~ x \sim y \}$ est la classe 
+      d'équivalence de $x$. Alors $(\faktor{X}{\sim}, \textup{cl})$ est un quotient de $X$ associé à la relation $\sim$.
+    \item On pose sur $\mathbb{N}^{2}$ la relation d'équivalence définie par : $\forall (a,b), (x,y) \in \mathbb{N}^{2}, 
+      (a,b) \sim (x,y) \Leftrightarrow a+y = x + b$. On note alors le quotient $\mathbb{Z}$. Évidemment, cette notation
+      n'est pas choisie au hasard puisque le but ici est de construire les entiers relatifs partant des entiers naturels.
+      Il est laisser (pour le moment) aux lectrices et lecteurs le soin de trouver une représentation graphique de 
+      ce quotient et d'en déduire le lien avec la structure naturelle et usuelle de $\mathbb{Z}$.
+  \end{enumerate}
+\end{example}   
+
+\begin{theorem}{(Propriété universelle des quotients)}
+    \label{thm:ppuquotient}
+    Soit $\pi : X \to Y$ un quotient associé à $\sim$ et soit $f :  X \to Z$ telle que : 
+    \[
+      \forall x,x', x \sim x' \Rightarrow f(x)=f(x')
+    \]
+    Alors : 
+    \[
+      \exists ! \varphi : Y \to Z, f = \varphi \circ \pi
+    \]
+
+    Autrement dit, il existe un unique $\varphi : Y \to Z$ telle que le diagramme suivant commute : 
+    \begin{center}
+      \begin{tikzcd}[column sep=2cm, row sep=2cm]
+        X \arrow[r,"f"] \arrow[d,"\pi"] & Y \\
+        Z \arrow[ur,dashed,dash,yshift=-3pt,below,"\varphi"'] \arrow[ur]
+      \end{tikzcd}
+    \end{center}
+
+    De plus, 
+
+    \begin{enumerate}
+      \item $\varphi$ est surjective si, et seulement si, $f$ l'est.
+      \item $\varphi$ est injective si, et seulement si : $\forall x,x', x \sim x' \Leftrightarrow f(x) =f(x')$.
+    \end{enumerate}
+
+    Réciproquement, si $\varphi$ existe, alors $\forall x,x', x \sim x' \Rightarrow f(x) = f(x')$.
+\end{theorem}
+
+\begin{proof}
+  L'idée est que, puisque tout élément d'une classe d'équivalence est envoyé sur la même image, 
+  prendre un représentant pour chaque classe et lui associer son image constituera le morphisme
+  $\varphi$ recherché. 
+  Par l'axiome du choix, on peut se donner $\sigma : Y \to X$ telle que $\pi \circ \sigma = \id_Y$.
+
+  On pose alors $\varphi := f \circ \sigma$ (cette construction dit bien qu'à chaque classe 
+  d'équivalence, on associe l'image d'un de ses éléments). 
+
+  On a $\varphi \circ \pi = f \circ \sigma \circ \pi$. 
+  Or, pour $x \in X$, on a $\sigma \circ\pi (x) \sim x$. 
+  En effet, $\pi \left( \sigma \circ\pi (x) \right) = \left(\pi \circ \sigma\right) \circ\pi(x) =\pi (x)$. 
+  Ainsi, par l'hypothèse donnée sur $f$, $f( \sigma \circ\pi (x)) = f(x)$, et ce, pour tout $x \in X$.
+
+  On a bien montré que $f = \varphi \circ\pi$.
+  Ceci montre l'existence d'un tel $\varphi$. Il reste alors à montrer l'unicité.
+
+\end{proof}
+
+\begin{proofr}
+  \underline{(Unicité)} : 
+    Soit $\tilde{\varphi} : Y \to Z$ telle que $f = \tilde{\varphi} \circ \pi $. 
+    Montrons que $\varphi = \tilde{\varphi}$.
+    
+    Soit $y \in Y$, par surjectivité de $\pi $, on peut se donner $x \in X$ tel que $y = \pi (x)$.
+
+    On obtient donc que : 
+    \begin{align*}
+      \varphi(y)  &= \varphi(\pi (x)) \\
+                  &= f(x) \\
+                  &= \tilde{\varphi}(\pi (x)) \\
+                  &= \tilde{\varphi}(y) 
+    \end{align*}
+    et ce, pour tout $y \in Y$. Ceci montre bien que $\tilde{\varphi} = \varphi$.
+        D'où l'unicité.
+
+\end{proofr}
+
+\begin{proofe}
+    
+\end{proofe}
+  \begin{proofe}
+  Montrons désormais le résultat portant sur la surjectivité de $\varphi$.
+  \end{proofe}
+  
+  \begin{proofr}
+      \underline{(Surjectivité)} : On raisonne par double implication.
+  \end{proofr}
+
+  \begin{proofrr}
+      \underline{($\Rightarrow$)} : Si $\varphi$ est surjective, $f$ l'est également comme composée de telles fonctions.
+            D'où l'implication directe. 
+
+        \underline{($\Leftarrow$)} : Supposons que $f$ soit surjective. Pour $z \in Z$, on se donne $x \in X$ tel que $f(x)=z$.
+        Alors $\varphi(\pi (x)) = f(x) = z$. D'où la surjectivité de $\varphi$.
+            D'où l'implication réciproque.
+  \end{proofrr}
+    \begin{proofr}
+      D'où l'équivalence portant sur la surjectivité de $\varphi$.
+    \end{proofr}
+
+
+\begin{proofe}
+  Montrons désormais l'équivalence portant sur l'injectivité de $\varphi$.
+\end{proofe}
+
+  \begin{proofr}
+    \underline{(Injectivité)} : 
+      Une fois n'est pas coutume, nous allons raisonner par équivalence en utilisant
+      notamment le fait que $\pi $ soit surjective.
+
+      \[
+        \begin{WithArrows}
+          \varphi \text{ est injective} &\Leftrightarrow \forall y,y' \in Y, \varphi(y) =
+                                            \varphi(y') \Rightarrow y=y' \curvearrow{$\pi $ est surj.} \\
+                                        & \Leftrightarrow \forall x,x' \in X, \varphi(\pi (x)) =
+                                            \varphi(\pi (x')) \Rightarrow \pi (x) = \pi (x') \\
+                                        & \Leftrightarrow \forall x,x' \in X, f (x) = f(x') 
+                                            \Rightarrow x \sim x' \curvearrow{autre imp. déjà donnée} \\
+                                        & \Leftrightarrow \forall x,x' \in X, f (x) = f(x')   
+                                            \Leftrightarrow x \sim x' 
+        \end{WithArrows}
+      \]
+
+          D'où l'équivalence portant sur l'injectivité de $\varphi$.
+  \end{proofr}
+
+\begin{proofe}
+
+  Enfin, si réciproquement une telle fonction $\varphi$ existe, alors pour $x,x' \in X$ tels que 
+  $x \sim x'$, $f(x) = \varphi(\pi (x)) = \varphi(\pi (x')) = f(x')$.
+
+\qed
+
+\end{proofe}
+
+\begin{remark}
+    La partie unicité peut se faire plus rapidement en invoquant l'inversibilité à droite de $\pi $ par sa surjectivité.
+    De plus, il est possible de se passer de l'axiome du choix en montrant que 
+    $\{ (y,z) ~|~ \forall x \in X , \pi (x) = y \Rightarrow f(x)=z\}$ est un graphe.
+\end{remark}
+
+\begin{example}
+  \label{ex:uniquequotient}
+\blank
+  \begin{enumerate}
+    \item 
+      Pour tout quotient $(Y,\pi )$ de $X$ associé à $\sim$, $\pi $ passe au quotient par $(\faktor{X}{\sim},\textup{cl}$).
+    \item Soit $X$ un ensemble et $d : X \times X \to \mathbb{R}_+$ une application vérifiant :
+
+    \begin{enumerate}
+      \item $\forall x,y \in X, d(x,y) = d(y,x)$
+      \item $\forall x,y,z \in X, d(x,z) \leq d(x,y) + d(y,z)$.
+      \item $\forall x,y \in X, d(x,y) = 0 \Leftrightarrow x \sim y$
+    \end{enumerate}
+
+    Alors $d$ induit une application quotient $\tilde{d} : \faktor{X}{\sim }  \times \faktor{X}{\sim } \to \mathbb{R}_+$
+    qui définit alors une distance sur $\faktor{X}{\sim }$.
   \end{enumerate}
 \end{example}
 
-\begin{proposition}{}
-  \label{prop:unicité inverse}
-  Soit $G$ un groupe. Tout élément de $G$ admet un unique inverse pour la loi de composition interne.
-\end{proposition}
-
-\begin{proof}
-    Soit $x \in G$, et soient $y, z \in G$ tels que $xy = yx =e$ et $xz = zx = e$.
-    Montrons que $y=z$.
-
-    On a : \begin{align*}
-      yxz &= (yx)z = ez = z \\
-          &= y(xz) = ye = y
-    \end{align*}
-
-    En mettant bout à bout les égalités, on obtient bien que $y=z$.
-\end{proof}
-
-\begin{definition}{}
-  Soient $G,G'$ deux groupes et $f : G \to G'$ une application.
-  On dit que $f$ est un morphisme de groupes si :
-  \[
-    \forall x,y \in G, f(xy) = f(x) f(y).
-  \]
-\end{definition}
-
-\begin{remark}
-  Si $f:G \to G'$ est un morphisme de groupe, alors $f(e_G) = e_{G'}$.
-  Pour celles et ceux qui auraient l'habitude du formalisme des monoïdes,
-  il n'est plus nécessaire de vérifier ce qu'il se passe pour l'élément neutre
-  puisque la loi de groupe induit naturellement que le neutre est envoyé... sur le neutre !
-\end{remark}
-
-
-
-\begin{exo}{}
-    \Question Montrer que pour tout $k \in \mathbb{Z}$, l'application $m_k : \begin{cases}
-      \mathbb{Z}/n \mathbb{Z} &\to \mathbb{Z}/ n \mathbb{Z} \\
-      \overline{i} & \mapsto \overline{ki}
-    \end{cases}$ est un morphisme de groupes.
-\end{exo}
-\begin{ans}{}
-    \Question REPONSE
-\end{ans}
-
-\chapter{Copie}
-
-Le but de ce chapitre est de mettre en évidence les possibilités du templates en cours.
-
-\section{Généralités}
-
-\begin{proposition}{}
-  \label{prop:unicité inverse2}
-  Ceci est une proposition
-\end{proposition}
-
-\begin{proof}
-    Dans la suite, on aura besoin du 
-    \begin{lemma}{}
-      \lipsum[1]
-    \end{lemma}
-\end{proof}
+L' \cref{ex:uniquequotient} de cet exemple montre que si un quotient est associé à une certaine
+relation d'équivalence $\sim$, alors on peut factoriser (ou passer au quotient) par $\faktor{X}{\sim}$.
+C'est en réalité le seul quotient (à bijection près) associé à $\sim$ comme le montre le corollaire suivant.
 
 \begin{corollary}{}
-    Ceci est un corollaire
+  \label{cor:uniquequotient}
+  Soient $\pi _1 :X \to Y_1$, $\pi _2 : X \to Y_2$ deux quotients associés à la relation d'équivalence $\sim$.
+  Alors il existe une unique bijection $\psi : Y_1 \to Y_2$ telle que $\pi _2 = \psi \circ \pi _1$.
 \end{corollary}
+\begin{proof}
+    On regarde le diagramme commutatif suivant : 
 
-\section{Autre section}
-
-\begin{lemma}{}
-  Ceci est un lemme
+\begin{center}
     
-\end{lemma}
+  \begin{tikzcd}[column sep=1.5cm, row sep=1.5cm]
+        & Y_1 \arrow[dr, "\exists ! \id _{Y_1}"] & \\
+    Y_2 \arrow[ur,"\exists ! \varphi"] \arrow[ur,dashed,dash,yshift=-3pt] & X \arrow[u," \pi_1 "] \arrow[r,"\pi _1"] 
+                        \arrow[d,"\pi _2"] \arrow[l,"\pi _2"] & Y_1 \arrow[dl,dashed,dash,yshift=-3pt] \arrow[dl, "\exists ! \psi "]\\
+                                       & Y_2 \arrow[ul,"\exists ! \id _{Y_2}"] 
+  \end{tikzcd}  
 
-\begin{example}{}
-    \label{ex:prod}
-    Ceci est un exemple un peu nul ... dommage ! 
+\end{center}
+
+En effet, en prenant le quotient $(Y_1,\pi _1)$ de $X$ auquel on applique la propriété universelle des
+quotients à $\pi _2$, on obtient le triangle inférieur droite. De même pour $(Y_2,\pi _2)$ avec $\pi _1$,
+on obtient le triangle supérieur gauche. Ceci donne l'existence et l'unicité des applications $\psi $ et $\varphi$.
+On note enfin qu'elles sont bien inverses l'une de l'autre via la propriété universelle appliquée à
+$(Y_1,\pi _1)$ sur $\pi _1$ cette fois, et en utilisant le fait que $\id_{Y_1}$ convient (comme application unique
+par l'unicité procurée par la propriété universelle des quotients encore une fois) pour l'application quotient de $\pi _1$,
+et de même pour $(Y_2, \pi _2)$ appliqué à $\pi _2$.
+Dès lors, par unicité, on obtient que : $\psi \circ \varphi = \id_{Y_1}$ et $\varphi \circ \psi = \id_{Y_2}$.
+
+\qed
+\end{proof}
+
+\begin{example}
+    Soient $\pi _1 : X_1 \to Y_1$ et $\pi _2 : X_2 \to Y_2$ deux quotients associés respectivement
+    à $\sim _1$ et $\sim _2$.
+    On définit sur $X_1 \times X_2$ la relation d'équivalance produit $\sim$ par :
+
+    \[
+      \forall m_1,m_1' \in X_1 ,m_2,m_2' \in X_2, (m_1,m_2) \sim (m_1',m_2') \Leftrightarrow m_1 \sim_1 m_1' \wedge m_2 \sim_2 m_2'
+    \]  
+
+    et $\pi : X_1 \times X_2 \to \faktor{(X_1 \times X_2)}{\sim }$ la surjection canoniquement associée.
+
+    Puisque 
+    \begin{align*}
+      \forall m_1,m_1' \in X_1,~ m_2, m_2' \in X_2,~ \pi (m_1,m_2) = \pi (m_1',m_2') \Leftrightarrow (m_1,m_2) \sim (m_1',m_2') \\ 
+      \Leftrightarrow \begin{cases}
+          m_1 \sim _1 m_1' \\
+          m_2 \sim _2 m_2' \\
+      \end{cases} \Leftrightarrow 
+      \begin{cases}
+          \pi _1 (m_1) = \pi _1(m_1') \\ 
+          \pi _2 (m_2) = \pi _2(m_2')
+      \end{cases}
+    \end{align*}
+
+    On observe que $Y_1 \times Y_2$ et $\faktor{X_1 \times X_2}{\sim }$ sont deux quotients associés
+    à $\sim $. Ils sont donc en bijection par ce qui précède.
+
+    Cet exemple montre d'une manière générale que, avec les bonnes notations : 
+
+    \[
+      \faktor{X_1}{\sim _1} \times \faktor{X_2}{\sim _2} \simeq \faktor{(X_1 \times X_2)}{(\sim _1 \times \sim _2)}
+    \]
+    
 \end{example}
 
-\begin{theorem}{}
-  Voici un théorème qui est sur plusieurs pages grâce à tcbox breakable !
-  \lipsum[1-10]
-\end{theorem}
+Une autre conséquence directe et fondamentale du \cref{thm:ppuquotient} est le double passage au quotient, 'au départ et à l'arrivée', via le 
 
-\begin{exo}{}
-  \Question THEIHTIEHTIE
-\end{exo}
-\begin{ans}{}
-    \Question Réponse
-\end{ans}
+\begin{corollary}{}
+  \label{cor:doublequotient}
+  Soient $\pi _{1}:X_{1} \to Y_{1}, \pi _2 : X_2 \to Y_2$ deux quotients associés respectivement à
+  $\sim_1$ et $\sim_2$, ainsi que $f : X_1 \to X_2$, une fonction vérifiant : 
+  $\forall x,x' \in X_1 , x \sim_1 x' \Rightarrow f(x) \sim_2 f(x')$.
+  Alors : $\exists ! \tilde{f} : Y_1 \to Y_2 , \pi _2 \circ f = \tilde{f} \circ \pi _1$.
+  Cette condition se traduit par la commutativité du diagramme suivant : 
 
-\begin{exo}{EXO 2}
-    \Question CECI EST UNE question
-\end{exo}
-\begin{ans}{}
-    \Question REPONSE
-\end{ans}
+  \begin{center}
 
-\chapter{Références}
+    \begin{tikzcd}[column sep=2cm, row sep=2cm]
+      X_1 \arrow[r,"f"] \arrow[d,"\pi_1"] & X_2 \arrow[d,"\pi_2"] \\
+      Y_1  \arrow[r,dashed,dash,yshift=-4pt,"\exists ! \tilde{f}"'] \arrow[r] & Y_2
+    \end{tikzcd}
+      
+  \end{center}
+\end{corollary}
 
-\section{Références - Section}
+\begin{proof}
+  Il suffit d'appliquer le \cref{thm:ppuquotient} à $\pi _2 \circ f$.
 
-\subsection{Références - Subsection}
+  \qed
+\end{proof}
 
-Il est possible d'utiliser le package cleveref pour écrire par exemple \cref{prop:unicité inverse}, ou 
-\cref{prop:unicité inverse2}, et être reconnu par tout le monde (neovim, texlab, le compilateur latex, ...)
-De plus, la \cref{prop:unicité inverse} donne \cref{ex:prod}.
-Essayons, pour voir, si \cref{ex:prod,prop:unicité inverse} fonctionne.
+On notera qu'il est également possible de donner une condition nécessaire et suffisante pour la 
+surjectivité de $\tilde{f}$, qui ne demande pas nécessairement que $f$ le soit.
 
+\begin{example}
+  \label{ex:Zmonoid}
+  L'application $+ : \mathbb{N}^2 \to \mathbb{N}$ descend en une application $\bar{+} : \mathbb{Z}^2 \to \mathbb{Z}$
+  en identifiant le quotient produit et le produit de quotient.
+  On pourra vérifier que $\bar{+}$ est associative, commutative, de neutre $\pi ((0,0))$,
+  et telle que pour tout élément $\pi ((a,b)) \in \mathbb{Z}$, $\pi ((a,b)) + \pi ((b,a)) = \pi ((a+b,a+b)) = \pi ((0,0))$.
+  Enfin, on peut remarquer que $\mathbb{N}$ s'injecte naturellement dans $\mathbb{Z}$ via $\iota : n \mapsto \pi ((n,0))$.
+  On obtient de telle manière un groupe abélien, partant d'un monoïde commutatif.
+\end{example}
 
+Cette section est limitée dans les exemples par le manque de structure des objets que nous étudions.
+Quand bien même la notion de passage au quotient est fondamentale en algèbre, il est plus que nécessaire
+de poursuivre cette étude en observant les liens avec des objets ayant plus de structure.
+
+\nocite{*}
+\bibliography{bibli}{}
+\bibliographystyle{plain}
 
 \end{document}
+
+
+

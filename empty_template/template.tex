@@ -1,8 +1,8 @@
 \input{headfile.tex} %All needed information are in this document
 
 %Global information about the document
-\def\THETITLE{Template LaTeX Document}
-\def\THEAUTHOR{Romain Delaunay}
+\def\THETITLE{Empty Title}
+\def\THEAUTHOR{Empty Author}
 
 \title{\THETITLE}
 \author{\THEAUTHOR}
@@ -18,13 +18,44 @@
 \cfoot{\thepage \ / \pageref*{LastPage} }
 \rfoot{}
 
+\hypersetup{
+  pdftitle={template}
+}
 %------------- Document --------------%
 
 \begin{document}
 
+% If the document is set in french and you want to use \cref for referencing,
+% then it is better to keep those two lines. It allows references like prop:something
+% Otherwise the symbol : is broken
+% \addto\extrasfrench{\protected\edef:{\unexpanded\expandafter{:}}}
+% \selectlanguage{french}
+ 
 \maketitle
 
 \tableofcontents
 
+\chapter{Empty chapter}
+
+\section{Empty section}
+
+\section{Empty other section}
+
+\chapter{Empty other chapter}
+
+\section{Empty section from second chapter}
+
+\section{Empty other section from second chapter}
+
+% 
+% % If a .bib file is used, use these lines
+% \nocite{*} % this one allows to keep all references of the .bib files even if they are not cited
+% \bibliography{bibli}{} % in the first brackets, state the name of the .bib file you wish to use
+% % without the .bib extension. If it is not in the same parent file, you may use ../something.bib to go back
+% % in the directory
+% \bibliographystyle{plain} % This is just the basic plain style for the bibliography, other exists
 
 \end{document}
+
+
+

@@ -1,3 +1,4 @@
+
 \documentclass[11pt]{scrbook}
 \usepackage[T1]{fontenc}
 
@@ -103,7 +104,7 @@
   {}% punctuation between head and body
   { }% space after theorem head; " " = normal interword space
   {
-    \textcolor{red}
+    \textcolor{black}
     {\thmname{#1} \thmnumber{#2}{\thmnote{#3}}}
   }
 
@@ -111,7 +112,7 @@
 \newtheorem{theoremenv}{Théorème}[chapter]
 \newenvironment{theorem}[1]{
   \begin{tcolorbox}[frame hidden, boxrule=0pt ,
-    borderline west={2pt}{0pt}{red}, colback=red!10!white]{}
+    borderline west={2pt}{0pt}{black}, colback=white]{}
     \begin{theoremenv}{#1}
   }{
   \end{theoremenv}
@@ -124,21 +125,20 @@
   {}% name of font to use in the body of the theorem
   {0pt}% measure of space to indent
   {\bfseries}% name of head font
-  {\textcolor{brown}:}% punctuation between head and body
+  {\textcolor{black}:}% punctuation between head and body
   { }% space after theorem head; " " = normal interword space
   {
-    \textcolor{brown}
+    \textcolor{black}
     {\thmname{#1}}
   }
 
 \theoremstyle{proofstyle}
 \newtheorem{proofenv}{Preuve}
-
 % simple proof environment
 \renewenvironment{proof}{
   \vspace{-0.59cm}
   \begin{tcolorbox}[frame hidden, boxrule=0pt ,
-    borderline west={2pt}{0pt}{brown}, colback=brown!10!white,
+    borderline west={2pt}{0pt}{black}, colback=white,
 %     borderline north={2pt}{0pt}{red, opacity=0.05}
     ]{}
   \begin{proofenv}
@@ -149,7 +149,7 @@
 
 \newenvironment{soloproof}{
   \begin{tcolorbox}[frame hidden, boxrule=0pt ,
-    borderline west={2pt}{0pt}{brown}, colback=brown!10!white,
+    borderline west={2pt}{0pt}{black}, colback=white,
 %     borderline north={2pt}{0pt}{red, opacity=0.05}
     ]{}
   \begin{proofenv}
@@ -161,8 +161,8 @@
 % environments.
 \newenvironment{proofe}{
   \vspace{-0.59cm}
-  \begin{tcolorbox}[frame hidden, boxrule=0pt,borderline west={2pt}{0pt}{brown},
-      , colback=brown!10!white
+  \begin{tcolorbox}[frame hidden, boxrule=0pt,borderline west={2pt}{0pt}{black},
+      , colback=white
     ]{}
 }{
 \end{tcolorbox}
@@ -171,8 +171,8 @@
 % one left rule
 \newenvironment{proofr}{
   \vspace{-0.59cm}
-  \begin{tcolorbox}[frame hidden, boxrule=0pt,borderline west={2pt}{0pt}{brown},
-    borderline west={2pt}{5mm}{black}, colback=brown!10!white, left=10mm
+  \begin{tcolorbox}[frame hidden, boxrule=0pt,borderline west={2pt}{0pt}{black},
+    borderline west={2pt}{5mm}{black}, colback=white, left=10mm
     ]{}
 }{
 \end{tcolorbox}
@@ -180,8 +180,8 @@
 % two left rule
 \newenvironment{proofrr}{
   \vspace{-0.59cm}
-  \begin{tcolorbox}[frame hidden, boxrule=0pt,borderline west={2pt}{0pt}{brown},
-    borderline west={1pt}{10mm}{black!80!white}, borderline west={2pt}{5mm}{black}, colback=brown!10!white, left=15mm
+  \begin{tcolorbox}[frame hidden, boxrule=0pt,borderline west={2pt}{0pt}{black},
+    borderline west={1pt}{10mm}{black!80!white}, borderline west={2pt}{5mm}{black}, colback=white, left=15mm
     ]{}
 }{
 \end{tcolorbox}
@@ -198,24 +198,12 @@
 
 %Propositions
 \newaliascnt{propositionenv}{theoremenv}
-\newtheoremstyle{propositionstyle}% name of the style to be used
-  {\topsep}% measure of space to leave above the proposition. E.g.: 3pt
-  {\topsep}% measure of space to leave below the proposition. E.g.: 3pt
-  {\itshape}% name of font to use in the body of the proposition
-  {0pt}% measure of space to indent
-  {\bfseries}% name of head font
-  {}% punctuation between head and body
-  { }% space after proposition head; " " = normal interword space
-  {
-    \textcolor{orange!95!black}
-    {\thmname{#1} \thmnumber{#2}{\thmnote{#3}}}
-  }
 
-\theoremstyle{propositionstyle}
+\theoremstyle{theoremstyle}
 \newtheorem{propositionenv}[propositionenv]{Proposition}
 \newenvironment{proposition}[1]{
   \begin{tcolorbox}[frame hidden, boxrule=0pt ,
-    borderline west={2pt}{0pt}{orange!92!black}, colback=orange!10!white]{}
+    borderline west={2pt}{0pt}{black}, colback=white]{}
     \begin{propositionenv}{#1}
   }{
   \end{propositionenv}
@@ -225,24 +213,12 @@
 
 %Lemmas
 \newaliascnt{lemmaenv}{theoremenv}
-\newtheoremstyle{lemmastyle}% name of the style to be used
-  {\topsep}% measure of space to leave above the lemma. E.g.: 3pt
-  {\topsep}% measure of space to leave below the lemma. E.g.: 3pt
-  {\itshape}% name of font to use in the body of the lemma
-  {0pt}% measure of space to indent
-  {\bfseries}% name of head font
-  {}% punctuation between head and body
-  { }% space after lemma head; " " = normal interword space
-  {
-    \textcolor{yellow!60!black}
-    {\thmname{#1} \thmnumber{#2}{\thmnote{#3}}}
-  }
 
-\theoremstyle{lemmastyle}
+\theoremstyle{theoremstyle}
 \newtheorem{lemmaenv}[lemmaenv]{Lemme}
 \newenvironment{lemma}[1]{
   \begin{tcolorbox}[frame hidden, boxrule=0pt ,
-    borderline west={2pt}{0pt}{yellow}, colback=yellow!10!white]{}
+    borderline west={2pt}{0pt}{black}, colback=white]{}
     \begin{lemmaenv}{#1}
   }{
   \end{lemmaenv}
@@ -252,24 +228,12 @@
 
 %Corollaries
 \newaliascnt{corollaryenv}{theoremenv}
-\newtheoremstyle{corollarystyle}% name of the style to be used
-  {\topsep}% measure of space to leave above the corollary. E.g.: 3pt
-  {\topsep}% measure of space to leave below the corollary. E.g.: 3pt
-  {\itshape}% name of font to use in the body of the corollary
-  {0pt}% measure of space to indent
-  {\bfseries}% name of head font
-  {}% punctuation between head and body
-  { }% space after corollary head; " " = normal interword space
-  {
-    \textcolor{cyan}
-    {\thmname{#1} \thmnumber{#2}{\thmnote{#3}}}
-  }
 
-\theoremstyle{corollarystyle}
+\theoremstyle{theoremstyle}
 \newtheorem{corollaryenv}[corollaryenv]{Corollaire}
 \newenvironment{corollary}[1]{
   \begin{tcolorbox}[frame hidden, boxrule=0pt ,
-    borderline west={2pt}{0pt}{cyan}, colback=cyan!8!white]{}
+    borderline west={2pt}{0pt}{black}, colback=white]{}
     \begin{corollaryenv}{#1}
   }{
   \end{corollaryenv}
@@ -279,6 +243,7 @@
 
 %Definitions
 \newaliascnt{definitionenv}{theoremenv}
+
 \newtheoremstyle{definitionstyle}% name of the style to be used
   {\topsep}% measure of space to leave above the definition. E.g.: 3pt
   {\topsep}% measure of space to leave below the definition. E.g.: 3pt
@@ -288,15 +253,15 @@
   {}% punctuation between head and body
   { }% space after definition head; " " = normal interword space
   {
-    \textcolor{green!70!black}
+    \textcolor{black}
     {\thmname{#1} \thmnumber{#2}{\thmnote{#3}}}
   }
-
 \theoremstyle{definitionstyle}
+
 \newtheorem{definitionenv}[definitionenv]{Définition}
 \newenvironment{definition}[1]{
   \begin{tcolorbox}[frame hidden, boxrule=0pt ,
-    borderline west={2pt}{0pt}{green!70!black}, colback=green!8!white]{}
+    borderline west={2pt}{0pt}{black}, colback=white]{}
     \begin{definitionenv}{#1}
   }{
   \end{definitionenv}
@@ -306,24 +271,12 @@
 
 %Examples
 \newaliascnt{exampleenv}{theoremenv}
-\newtheoremstyle{examplestyle}% name of the style to be used
-  {\topsep}% measure of space to leave above the example. E.g.: 3pt
-  {\topsep}% measure of space to leave below the example. E.g.: 3pt
-  {}% name of font to use in the body of the example
-  {0pt}% measure of space to indent
-  {\bfseries}% name of head font
-  {}% punctuation between head and body
-  { }% space after example head; " " = normal interword space
-  {
-    \textcolor{blue!85!white}
-    {\thmname{#1} \thmnumber{#2}{\thmnote{#3}}}
-  }
 
-\theoremstyle{examplestyle}
+\theoremstyle{definitionstyle}
 \newtheorem{exampleenv}[exampleenv]{Exemple}
 \newenvironment{example}{
   \begin{tcolorbox}[frame hidden, boxrule=0pt ,
-    borderline west={2pt}{0pt}{blue!80!white}, colback=blue!10!white]{}
+    borderline west={2pt}{0pt}{black}, colback=white]{}
     \begin{exampleenv}{}
   }{
   \end{exampleenv}
@@ -333,24 +286,12 @@
 
 %Remarks
 \newaliascnt{remarkenv}{theoremenv}
-\newtheoremstyle{remarkstyle}% name of the style to be used
-  {\topsep}% measure of space to leave above the remark. E.g.: 3pt
-  {\topsep}% measure of space to leave below the remark. E.g.: 3pt
-  {}% name of font to use in the body of the remark
-  {0pt}% measure of space to indent
-  {\bfseries}% name of head font
-  {}% punctuation between head and body
-  { }% space after remark head; " " = normal interword space
-  {
-    \textcolor{violet!80!white}
-    {\thmname{#1} \thmnumber{#2}{\thmnote{#3}}}
-  }
 
-\theoremstyle{remarkstyle}
+\theoremstyle{definitionstyle}
 \newtheorem{remarkenv}[remarkenv]{Remarque}
 \newenvironment{remark}{
   \begin{tcolorbox}[frame hidden, boxrule=0pt ,
-    borderline west={2pt}{0pt}{violet}, colback=violet!10!white]{}
+    borderline west={2pt}{0pt}{black}, colback=white]{}
     \begin{remarkenv}{}
   }{
   \end{remarkenv}
@@ -359,24 +300,12 @@
 \aliascntresetthe{remarkenv}
 
 \newaliascnt{applicationenv}{theoremenv}
-\newtheoremstyle{applicationstyle}% name of the style to be used
-  {\topsep}% measure of space to leave above the application. E.g.: 3pt
-  {\topsep}% measure of space to leave below the application. E.g.: 3pt
-  {\itshape}% name of font to use in the body of the application
-  {0pt}% measure of space to indent
-  {\bfseries}% name of head font
-  {}% punctuation between head and body
-  { }% space after application head; " " = normal interword space
-  {
-    \textcolor{cyan}
-    {\thmname{#1} \thmnumber{#2}{\thmnote{#3}}}
-  }
 
-\theoremstyle{applicationstyle}
+\theoremstyle{definitionstyle}
 \newtheorem{applicationenv}[applicationenv]{Application}
 \newenvironment{application}[1]{
   \begin{tcolorbox}[frame hidden, boxrule=0pt ,
-    borderline west={2pt}{0pt}{cyan}, colback=cyan!8!white]{}
+    borderline west={2pt}{0pt}{black}, colback=white]{}
     \begin{applicationenv}{#1}
   }{
   \end{applicationenv}
@@ -461,8 +390,8 @@ list text={Exercice avec solution à la page \pageref{sol:#2}},#1}
 \usepackage{amssymb}
 \usepackage{faktor}
 
-\DeclareTOCStyleEntries[pagenumberwidth=40pt]{tocline}{part,chapter,section,subsection}
 
+\DeclareTOCStyleEntries[pagenumberwidth=40pt]{tocline}{part,chapter,section,subsection}
 % ----------- New commands ------------ %
 
 \newcommand*{\blank}{\hspace*{1pt}}
@@ -488,4 +417,3 @@ list text={Exercice avec solution à la page \pageref{sol:#2}},#1}
 \newcommand*{\ev}{\textup{ev}}
 \newcommand{\curvearrow}[1]{\Arrow[tikz={font={\tiny\mdseries}, text width=2cm}]{#1}}
 \newcommand*{\proofspace}{\begin{proofe} \end{proofe}}
-
